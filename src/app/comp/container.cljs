@@ -31,8 +31,9 @@
                :height 200,
                :width 200,
                :background-size :contain}})
+     (=< nil 40)
      (div
-      {:style {:display :inline-block, :line-height "64px", :padding "0 16px"}}
+      {:style {:display :inline-block, :line-height "32px", :padding "0 16px"}}
       (span
        {}
        (a
@@ -42,8 +43,8 @@
          :target "_blank"})
        (<>
         " is small explorations on designer tools."
-        {:font-family ui/font-fancy, :font-size 24})))
-     (=< nil 80)
+        {:font-family ui/font-fancy, :font-size 18})))
+     (=< nil 40)
      (list->
       {}
       (->> projects
@@ -51,19 +52,21 @@
             (fn [project]
               [(:repo project)
                (div
-                {:style {:background-color (hsl 200 80 90),
-                         :padding 16,
-                         :margin-bottom 32,
-                         :min-width 320}}
+                {:style (merge
+                         ui/row-parted
+                         {:background-color "#fdf595",
+                          :padding "16px 24px",
+                          :margin-bottom 32,
+                          :min-width 400})}
                 (a
-                 {:style {:font-size 24},
+                 {:style {:font-family ui/font-fancy, :font-size 18, :text-decoration :none},
                   :inner-text (:name project),
                   :href (:demo project),
                   :target "_blank"})
                 (=< 16 nil)
                 (a
-                 {:style {:font-size 16},
-                  :inner-text "Repo",
+                 {:style {:font-size 13},
+                  :inner-text "source",
                   :href (:repo project),
                   :target "_blank"}))])))))
     (when dev? (cursor-> :reel comp-reel states reel {})))))
